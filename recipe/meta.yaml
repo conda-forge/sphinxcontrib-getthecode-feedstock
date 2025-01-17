@@ -11,19 +11,21 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3.4
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.4
+    - python >={{ python_min }}
     - sphinx >=3.0
 
 test:
    # Getthecode doesn't have unit tests (lake of time)
+  requires:
+    - python {{ python_min }}
   imports:
     - sphinxcontrib.getthecode
 
